@@ -1,22 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import TimeZonePicker from './components/TimeZonePicker';
+import Clock from './components/Clock';
+import ServerSentEventExample from './components/ServerSentEventExample';
 
 function App() {
+  const [autoCompleteValue, setAutoCompleteValue] = useState();
+
+  const handleAutoCompleteValue = (value) => {
+    setAutoCompleteValue(value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <TimeZonePicker handleChange={handleAutoCompleteValue} />
+        {autoCompleteValue && <Clock timeZone={autoCompleteValue} />}
+        <ServerSentEventExample />
       </header>
     </div>
   );
